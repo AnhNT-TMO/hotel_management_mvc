@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
-  CREATABLE_ATTRS = %i(room_id bill_id total_price start_date end_date).freeze
+  CREATABLE_ATTRS = %i(user_id room_id bill_id total_price start_date end_date
+status).freeze
 
   belongs_to :user
   belongs_to :room
@@ -55,5 +56,18 @@ class Booking < ApplicationRecord
                                              end_date,
                                              user_id).pluck("room_id")
     @room_ids_checking + @room_ids_pending
+  end
+
+  def check_status_destroy
+    return if pending?
+
+    bill = Bill.find_bill_with_booking bill_id
+
+    bill.first.total_price -= total_price
+    if bill.first.total_price.zero?
+      bill.first.destroy
+    else
+      bill.first.save
+    end
   end
 end

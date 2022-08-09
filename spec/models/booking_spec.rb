@@ -10,6 +10,7 @@ RSpec.describe Booking, type: :model do
   let!(:book1) { FactoryBot.create :booking, start_date: Settings.day.two_day_from_now.days.from_now.to_date,
     end_date: Settings.day.four_day_from_now.days.from_now.to_date, user: user, bill: bill1, room: room1 }
   let!(:book2) { FactoryBot.create :booking, user: user, bill: bill2, room: room2, status: :confirm }
+  let!(:book3) { FactoryBot.create :booking, user: user, bill: bill2, room: room2, status: :checking }
 
   describe "associations" do
     context "with belong to" do
@@ -34,25 +35,25 @@ RSpec.describe Booking, type: :model do
       end
 
       it "Should return exception if not fill params" do
-        expect(Booking.by_bills("").pluck :id).to eq([book1.id, book2.id])
+        expect(Booking.by_bills("").pluck :id).to eq([book1.id, book2.id, book3.id])
       end
     end
 
     describe ".recent_bookings" do
       it "Should order by created_date of booking" do
-        expect(Booking.recent_bookings.pluck :id).to eq([book1.id, book2.id])
+        expect(Booking.recent_bookings.pluck :id).to eq([book1.id, book2.id, book3.id])
       end
     end
 
     describe ".booking_order" do
       it "Should order by id of booking" do
-        expect(Booking.booking_order.pluck :id).to eq([book1.id, book2.id])
+        expect(Booking.booking_order.pluck :id).to eq([book1.id, book2.id, book3.id])
       end
     end
 
     describe ".find_booking" do
       it "Should return booking if user_id that match" do
-        expect(Booking.find_booking(user.id).pluck :id).to eq([book1.id, book2.id])
+        expect(Booking.find_booking(user.id).pluck :id).to eq([book1.id, book2.id, book3.id])
       end
     end
 
@@ -70,7 +71,7 @@ RSpec.describe Booking, type: :model do
 
     describe ".find_booking_was_not_pending" do
       it "Should return booking if status that match" do
-        expect(Booking.find_booking_was_not_pending.pluck :id).to eq([book2.id])
+        expect(Booking.find_booking_was_not_pending.pluck :id).to eq([book2.id, book3.id])
       end
     end
 
@@ -90,6 +91,18 @@ RSpec.describe Booking, type: :model do
   describe ".booking_ids" do
     it "Should return list room_id that match" do
       expect(Booking.booking_ids(book1.start_date, book1.end_date, user.id)).to eq([book1.room_id])
+    end
+  end
+
+  describe "#calculate_total_price" do
+    it "Should return total_price calculated" do
+      expect(book3.check_status_destroy).to eq(true)
+    end
+
+    it "Should return bill destroy" do
+      allow_any_instance_of(Bill).to receive(:total_price).and_return(0)
+
+      expect(book3.check_status_destroy).to eq(bill2)
     end
   end
 end
