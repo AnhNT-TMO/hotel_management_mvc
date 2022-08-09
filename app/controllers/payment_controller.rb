@@ -57,7 +57,7 @@ class PaymentController < ApplicationController
   end
 
   def find_bookings
-    @bookings = Booking.find_booking_with_bill_id(params[:bill][:bill_id])
+    @bookings = Booking.by_bills(params[:bill][:bill_id])
     return if @bookings.first.present?
 
     flash[:danger] = t ".alert_booking"

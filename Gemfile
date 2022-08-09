@@ -11,6 +11,7 @@ gem "bootstrap-sass", "~> 3.4.1"
 gem "carrierwave"
 gem "cocoon"
 gem "config"
+gem "faker"
 gem "figaro"
 gem "flex-slider-rails"
 gem "font-awesome-sass", "~> 6.1.0"
@@ -28,6 +29,8 @@ gem "redis-namespace"
 gem "redis-rails"
 gem "sass-rails", ">= 6"
 gem "sidekiq"
+gem "simplecov"
+gem "simplecov-rcov"
 gem "tinymce-rails"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
@@ -49,7 +52,10 @@ end
 
 group :test do
   gem "capybara", ">= 3.26"
+  gem "database_cleaner", "~> 1.5"
+  gem "factory_bot_rails"
   gem "selenium-webdriver", ">= 4.0.0.rc1"
+  gem "shoulda-matchers", "~> 3.0", require: false
   gem "webdrivers"
 end
 

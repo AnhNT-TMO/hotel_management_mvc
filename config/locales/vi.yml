@@ -23,7 +23,7 @@ vi:
     home:
       started: "Đăng Nhập"
       hotel_name: "Dracul Hotel"
-      hotel_slogan: "Book or Die   "
+      hotel_slogan: "Dracul Hotel - Mang lại trải nghiệm tuyệt nhất   "
       hotel_description_first: "Khách sạn đặc biệt cho bạn ngay hôm nay "
       hotel_register: "Đặt phòng ngay"
       hotel_description_second: " để có thể trải nghiệm sự khác biệt của chúng tôi"
@@ -112,7 +112,7 @@ vi:
   payment:
     create:
       success_payment: "Thanh toán thành công"
-      error_payment: "Trâu chậm uống nước đục!!!"
+      error_payment: "Có một người đã đặt phòng của bạn mất rồi :( !!!"
   histories:
     show:
       history: "Lịch sử đặt phòng"
@@ -121,6 +121,7 @@ vi:
       quantity: "Số lượng"
       status: "Trạng thái"
       action: "Hành động"
+      bill_not_exists: "Không có bill nào trong lịch sử"
   bookings:
     booking:
       confirm_dialog: "Bạn chắc chắn chưa?"
