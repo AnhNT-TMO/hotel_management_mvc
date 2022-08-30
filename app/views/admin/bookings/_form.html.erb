@@ -1,0 +1,67 @@
+<%= form_for([:admin, @bill, @booking], url: admin_bill_booking_path, html: {multipart: true}) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div><%= hidden_field :id, f.object.id %></div>
+  <div><%= hidden_field :user_id, f.object.user_id %></div>
+  <div><%= hidden_field :status, f.object.status %></div>
+  <div class="field">
+    <%= f.label :user, t(".user_name") %>
+    <%= f.text_field :user_name, class: "form-control", value: f.object.user_name, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone, t(".phone") %>
+    <%= f.text_field :user_phone, class: "form-control", value: f.object.user_phone, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, t(".email") %>
+    <%= f.text_field :user_email, class: "form-control", value: f.object.user_email, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, t(".price") %>
+    <%= f.text_field :total_price, class: "form-control", value: number_to_currency(f.object.total_price), readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date, t(".start_date") %>
+    <%= f.text_field :start_date, class: "form-control", value: f.object.start_date.strftime('%FT%T'), readonly: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :end_date, t(".end_date") %>
+    <%= f.text_field :end_date, class: "form-control", value: f.object.end_date.strftime('%FT%T'), readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reason, t(".reason") %>
+    <%= f.text_field :reason, class: "form-control" %>
+  </div>
+
+  <br>
+  <% if f.object.id? %>
+    <div id="carouselExampleControls"  class="carousel slide" data-bs-ride="carousel" >
+      <div class="carousel-inner" role="listbox">
+      <% @booking.room.images.each do |i| %>
+        <div class="carousel-item active">
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+                <%= image_tag i.photo_url%>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="visually-hidden"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="visually-hidden"></span>
+                </button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit t(".create-btn"), class: "btn btn-primary" if f.object.pending? %>
+  </div>
+<% end %>

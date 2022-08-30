@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_08_26_081729) do
     t.decimal "total_price", precision: 10
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "status", default: 0
+    t.integer "status"
     t.string "reason"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false

@@ -17,6 +17,7 @@ class Booking < ApplicationRecord
   belongs_to :bill
 
   delegate :name, :images, :rate_avg, :price, to: :room, prefix: :room
+  delegate :name, :phone, :email, to: :user, prefix: :user
 
   scope :by_bills, ->(bill_id){where(bill_id: bill_id) if bill_id.present?}
 

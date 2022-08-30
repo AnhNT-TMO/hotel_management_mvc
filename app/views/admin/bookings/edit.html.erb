@@ -1,0 +1,19 @@
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4"><%= t ".bill" %></h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><%= link_to t(".dashboard"), admin_dashboard_index_path %></li>
+      <li class="breadcrumb-item active"><%= link_to t(".bill"), admin_bills_path %></li>
+      <li class="breadcrumb-item active"><%= t ".update" %></li>
+    </ol>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        <%= t ".bill" %>
+      </div>
+      <div class="card-body">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+</main>

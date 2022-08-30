@@ -12,4 +12,10 @@ module AdminHelper
       Bill.statuses.keys.to_a
     end
   end
+
+  def room_types_options
+    types = Room.types.to_a
+    types.unshift ["All", ""]
+    types
+  end
 end

@@ -144,11 +144,6 @@ vi:
       danger_star_review: "Sao phải từ 1 -> 5"
       review_success: "Đánh giá thành công"
       review_fail: "Đánh giá thất bại"
-#ADMIN-------------ADMIN
-#ADMIN-------------ADMIN
-#ADMIN-------------ADMIN
-#ADMIN-------------ADMIN
-#ADMIN-------------ADMIN
   admin:
     dashboard:
       index:
@@ -238,6 +233,19 @@ vi:
         bookings: Danh sách phòng đặt
       create:
         room_was_booking: "Phòng đã được đặt vào ngày giờ này"
+      edit:
+        bill: Quản lý hóa đơn
+        update: Cập nhật hóa đơn
+      form:
+        user_name: Tên khách hàng
+        phone: Số điện thoại
+        price: Tổng tiền
+        status: Trạng thái
+        created_at: Ngày tạo hóa đơn
+        start_date: Ngày trả phòng
+        end_date: Ngày đặt phòng
+        create-btn: Lưu
+        reason: Lý do
   users:
     update:
       old_password_fail: "Sai mật khẩu cũ"
@@ -271,3 +279,10 @@ vi:
       bill_id: Mã hóa đơn của bạn là
       list_room: Danh sách phòng đã đặt của bạn là
       thanks: Cảm ơn bạn vì đã lựa chọn khách sạn của chúng tôi
+    send_booking_mail:
+      subject: Hủy phòng đặt
+      hi: Xin chào
+      cancel: Rất tiếc phải thông báo phòng bạn đặt đã bị hủy
+      room: Phòng bạn đặt là
+      reason: Với lý do
+      sorry: Rất xin lỗi bạn vì sự bất tiện này. Cảm ơn bạn vì đã lựa chọn khách sạn của chúng tôi

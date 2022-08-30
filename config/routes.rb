@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :dashboard
       resources :rooms
       resources :bills do
-        resources :bookings, only: :index
+        resources :bookings
       end
     end
     resources :rooms
