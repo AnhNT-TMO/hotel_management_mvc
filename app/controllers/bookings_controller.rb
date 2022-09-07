@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
                 :check_status_booking, only: :destroy
 
   def create
+    @booking = Booking.new booking_params
     if @booking.save
       flash[:success] = t ".room_request_success"
     else
@@ -15,7 +16,7 @@ class BookingsController < ApplicationController
 
   def destroy
     if @booking.destroy
-      check_status_destroy @booking
+      @booking.check_status_destroy
       flash[:success] = t(".booking_delete_success")
     else
       flash[:danger] = t(".booking_delete_denied")
@@ -30,23 +31,6 @@ class BookingsController < ApplicationController
   end
 
   private
-
-  def check_status_destroy booking
-    return if @booking.pending?
-
-    @bill = Bill.find_bill_with_booking(booking.bill_id)
-
-    @bill.first.total_price -= @booking.total_price
-    if @bill.first.total_price.zero?
-      @bill.first.destroy
-    else
-      @bill.first.save
-    end
-  end
-
-  def bill_params
-    params.require(:bill).permit(Bill::CREATABLE_ATTR)
-  end
 
   def booking_params
     params.require(:booking).permit(Booking::CREATABLE_ATTRS)
