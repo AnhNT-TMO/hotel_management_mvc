@@ -13,8 +13,8 @@ class Admin::BillsController < Admin::AdminController
   def update
     ActiveRecord::Base.transaction do
       @bill.update(bill_params)
-      flash[:success] = t ".update_success"
       update_booking(@bill.id)
+      flash[:success] = t ".update_success"
       redirect_to admin_bills_path
     end
   rescue StandardError => e
@@ -36,7 +36,7 @@ class Admin::BillsController < Admin::AdminController
   end
 
   def update_booking bill_id
-    @bookings = Booking.by_bills(bill_id).pending
+    @bookings = Booking.by_bills(bill_id).checking
     @bookings.update status: Booking.statuses[:confirm]
   end
 

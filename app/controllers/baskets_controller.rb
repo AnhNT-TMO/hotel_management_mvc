@@ -6,7 +6,7 @@ class BasketsController < ApplicationController
   private
 
   def filter_booking
-    @pagy, @bookings = pagy Booking.find_booking_with_bill_id(@bill.id)
+    @pagy, @bookings = pagy Booking.by_bills(@bill.id)
                                    .booking_order,
                             items: Settings.booking.booking_per_page,
                             link_extra: 'data-remote="true"'

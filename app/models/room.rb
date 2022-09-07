@@ -30,9 +30,10 @@ class Room < ApplicationRecord
   scope :by_types, ->(types){where(types: types) if types.present?}
 
   def room_ids start_date, end_date, user_id
-    @room_ids_checking = Booking.checking.check_exist_booking(
-      start_date, end_date
-    ).pluck("room_id")
+    @room_ids_checking = Booking.find_booking_was_not_pending
+                                .check_exist_booking(
+                                  start_date, end_date
+                                ).pluck("room_id")
     @room_ids_pending = Room.by_between_date(start_date,
                                              end_date,
                                              user_id).pluck("room_id")

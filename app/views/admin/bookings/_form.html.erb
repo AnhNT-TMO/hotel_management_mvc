@@ -62,6 +62,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit t(".create-btn"), class: "btn btn-primary" if f.object.pending? %>
+    <%= f.submit t(".create-btn"), class: "btn btn-primary" if f.object.checking? %>
   </div>
 <% end %>

@@ -23,8 +23,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length:
     {minimum: Settings.user.password.min_length}, if: :password
 
-  validates :phone, presence: true,
-            format: {with: Settings.user.phone.regex_format}
+  validates :phone, presence: true
 
   has_secure_password
 end

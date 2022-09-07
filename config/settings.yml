@@ -31,9 +31,14 @@ bills:
   bill_per_page: 10
 bookings:
   booking_per_page: 5
+  min_total_price: 0
 day:
   day_from_now: 1
+  two_day_from_now: 2
+  four_day_from_now: 4
 content:
   max_content: 140
+history:
+  history_per_page: 5
 stars_number_rate: 5
 rate: [1,2,3,4,5]

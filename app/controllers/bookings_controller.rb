@@ -7,11 +7,10 @@ class BookingsController < ApplicationController
   def create
     if @booking.save
       flash[:success] = t ".room_request_success"
-      redirect_to baskets_path
     else
       flash[:danger] = t ".room_request_denied"
-      redirect_to rooms_path
     end
+    redirect_to rooms_path
   end
 
   def destroy
@@ -25,7 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @pagy, @bookings = pagy Booking.find_booking_with_bill_id(params[:bill_id])
+    @pagy, @bookings = pagy Booking.by_bills(params[:bill_id])
                                    .booking_order,
                             items: Settings.booking.booking_per_page
   end
@@ -99,9 +98,9 @@ class BookingsController < ApplicationController
   end
 
   def find_room_ids_from_bookings
-    Booking.new.booking_ids(params[:booking][:start_date],
-                            params[:booking][:end_date],
-                            current_user.id)
+    Booking.booking_ids(params[:booking][:start_date],
+                        params[:booking][:end_date],
+                        current_user.id)
   end
 
   def init_date
@@ -114,7 +113,7 @@ class BookingsController < ApplicationController
 
   def fill_params
     @booking = current_user.bookings.build booking_params
-    @booking.total_price = @booking.calculate_total_price(@booking, @room)
+    @booking.total_price = @booking.calculate_total_price(@room)
     @booking.bill_id = @bill.id
   end
 

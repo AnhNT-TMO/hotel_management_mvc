@@ -12,12 +12,14 @@ class Booking < ApplicationRecord
     abort: 3
   }
 
-  belongs_to :user
-  belongs_to :room
-  belongs_to :bill
-
   delegate :name, :images, :rate_avg, :price, to: :room, prefix: :room
   delegate :name, :phone, :email, to: :user, prefix: :user
+
+  validates :start_date, :end_date, presence: true
+  validates :total_price, presence: true, numericality: {
+    only_integer: true,
+    greater_than: Settings.bookings.min_total_price
+  }
 
   scope :by_bills, ->(bill_id){where(bill_id: bill_id) if bill_id.present?}
 
@@ -33,21 +35,22 @@ class Booking < ApplicationRecord
         end)
 
   scope :find_room_with_id, ->(room_id){where room_id: room_id}
-  scope :find_booking_with_bill_id, ->(bill_id){where bill_id: bill_id}
-
-  def calculate_total_price booking, room
-    (booking.end_date.to_date -
-      booking.start_date.to_date).to_i * room.price
-  end
+  scope :find_booking_was_not_pending, ->{where.not(status: :pending)}
   scope :check_user_booking_confirm,
         (lambda do |user_id, room_id|
           where(user_id: user_id, room_id: room_id)
         end)
 
-  def booking_ids start_date, end_date, user_id
-    @room_ids_checking = Booking.checking.check_exist_booking(
-      start_date, end_date
-    ).pluck("room_id")
+  def calculate_total_price room
+    (end_date.to_date -
+      start_date.to_date).to_i * room.price
+  end
+
+  def self.booking_ids start_date, end_date, user_id
+    @room_ids_checking = Booking.find_booking_was_not_pending
+                                .check_exist_booking(
+                                  start_date, end_date
+                                ).pluck("room_id")
     @room_ids_pending = Room.by_between_date(start_date,
                                              end_date,
                                              user_id).pluck("room_id")

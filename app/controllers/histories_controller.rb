@@ -1,5 +1,5 @@
 class HistoriesController < ApplicationController
-  before_action :logged_in_user, :find_bill, only: :show
+  before_action :logged_in_user, :check_exists_bill, :find_bill, only: :show
 
   def show; end
 
@@ -12,6 +12,13 @@ class HistoriesController < ApplicationController
     return if @bills
 
     flash[:danger] = t ".alert_history"
+    redirect_to root_path
+  end
+
+  def check_exists_bill
+    return if current_user.bills.find_bill_was_payment.present?
+
+    flash[:danger] = t ".bill_not_exists"
     redirect_to root_path
   end
 end
