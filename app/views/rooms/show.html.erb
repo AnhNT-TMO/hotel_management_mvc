@@ -33,7 +33,7 @@
     <%= image_tag "ipad.png", class: "img-fluid", alt: "..." %>
   </div>
 </section>
-<% if (logged_in? && !check_booked(@room.id)) %>
+<% if (user_signed_in? && !check_booked(@room.id)) %>
   <%= render "form_review" %>
 <% end %>
 <% if @list_review %>

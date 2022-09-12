@@ -11,7 +11,7 @@
               <%= label :name, " ", class: "label_align" %>
               <%= text_field_tag :description, nil, placeholder: t(".enter_description"), class: "form-control search_button_width" %>
             </div>
-            <% if logged_in? %>
+            <% if user_signed_in? %>
               <div class="col-lg-4">
                 <%= label :name, t(".start_date"), class: "label_align margin_left_start_date" %>
                 <%= date_field_tag :start_date, @start_date.blank? ? DateTime.now.to_date : @start_date, min: DateTime.now.to_date, class:"form-control start_date_width" %>

@@ -1,0 +1,26 @@
+<h2><%= t ".forgot_password" %></h2>
+
+<%= render "devise/shared/links" %>
+<section class="signup-section" id="signup">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5">
+      <div class="col-md-10 col-lg-8 mx-auto text-center">
+        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+        <h2 class="text-white mb-5"><%= t ".forgot_password" %></h2>
+          <div class="row input-group-newsletter">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="row">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: t(".enter_email") %>
+              </div>
+              <div class="actions">
+                <%= f.submit t(".submit"), class: "btn btn-primary" %>
+              </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "layouts/footer" %>

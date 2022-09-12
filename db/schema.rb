@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_26_081729) do
+ActiveRecord::Schema.define(version: 2022_09_07_074218) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_08_26_081729) do
     t.decimal "total_price", precision: 10
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "reason"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2022_08_26_081729) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_reviews_on_room_id"
+    t.index ["user_id", "room_id", "created_at"], name: "index_reviews_on_user_id_and_room_id_and_created_at"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -125,6 +126,16 @@ ActiveRecord::Schema.define(version: 2022_08_26_081729) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

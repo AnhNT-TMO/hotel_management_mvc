@@ -1,5 +1,5 @@
 class PaymentController < ApplicationController
-  before_action :logged_in_user, :find_bill_pending, :find_bookings,
+  before_action :authenticate_user!, :find_bill_pending, :find_bookings,
                 :check_booking, :calculate_price, only: :create
 
   def create

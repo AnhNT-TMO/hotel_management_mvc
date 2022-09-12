@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :check_blank_date, :check_date, only: :index
 
   def index
-    if logged_in?
+    if user_signed_in?
       filter_if_logged_in
       @start_date = params[:start_date]
       @end_date = params[:end_date]

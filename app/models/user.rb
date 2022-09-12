@@ -1,10 +1,13 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :async, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   enum role: {
     user: 0,
     admin: 1
   }
 
-  UPDATABLE_ATTRS = %i(name password password_confirmation).freeze
+  UPDATABLE_ATTRS = %i(name email phone password password_confirmation).freeze
 
   has_many :reviews, dependent: :destroy
   has_many :bills, dependent: :destroy
@@ -20,10 +23,5 @@ class User < ApplicationRecord
   },
     format: {with: Settings.user.email.regex_format}
 
-  validates :password, presence: true, length:
-    {minimum: Settings.user.password.min_length}, if: :password
-
   validates :phone, presence: true
-
-  has_secure_password
 end

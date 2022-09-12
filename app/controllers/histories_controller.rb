@@ -1,5 +1,5 @@
 class HistoriesController < ApplicationController
-  before_action :logged_in_user, :check_exists_bill, :find_bill, only: :show
+  before_action :authenticate_user!, :check_exists_bill, :find_bill, only: :show
 
   def show; end
 
