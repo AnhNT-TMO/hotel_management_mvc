@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, :check_quantity_review,
-                :check_star_review, :check_user_booking_room, only: :create
+                :check_star_review, only: :create
   def new; end
 
   def create
@@ -25,15 +25,6 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit Review::REVIEW_PARAMS
-  end
-
-  def check_user_booking_room
-    return if Booking.confirm.check_user_booking_confirm(
-      current_user.id, params[:review][:room_id]
-    ).present?
-
-    flash[:danger] = t ".cannot_review"
-    redirect_to root_path
   end
 
   def check_quantity_review

@@ -8,6 +8,7 @@ require("packs/preview-img")
 require('./iconify.min')
 require('cocoon')
 require('./custom')
+require('./checkbox')
 require('jquery')
 
 Rails.start()

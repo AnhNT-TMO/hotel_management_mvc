@@ -3,14 +3,14 @@ class PaymentController < ApplicationController
                 :check_booking, :calculate_price, only: :create
 
   def create
-    ActiveRecord::Base.transaction do
+    Bill.transaction do
       calculate_price
       fill_date_bill
       flash[:success] = t ".success_payment"
       redirect_to history_path
     end
   rescue StandardError => e
-    flash[danger] = e
+    flash[:danger] = e
     redirect_to baskets_path
   end
 

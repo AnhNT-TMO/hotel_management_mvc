@@ -108,6 +108,8 @@ vi:
       promotion_price: "Mã giảm giá"
       total_price: "Tổng tiền bill"
       payment: "Thanh toán"
+      confirm_dialog: "Bạn đã chắc chắn chưa?"
+      delete: "Xóa tất cả"
     basket:
       confirm_dialog: "Bạn chắc chắn chưa?"
   payment:

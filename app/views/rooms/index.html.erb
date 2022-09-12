@@ -2,23 +2,23 @@
 <section class="signup-section padding_signup" id="signup">
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5">
-      <%= form_tag rooms_path, :html => {:class => "form-signup"}, method: :get do |f| %>
+      <%= form_tag rooms_path, :html => {:class => "form-signup"}, method: :get do%>
         <div class="col-md-8 col-lg-12 mx-auto text-center">
           <i class="far fa fa-search fa-2x mb-2 text-white"></i>
           <h2 class="text-white mb-5"><%= t ".search" %></h2>
           <div class="row input-group-newsletter">
             <div class="col-lg-4">
               <%= label :name, " ", class: "label_align" %>
-              <%= text_field_tag :description, nil, placeholder: t(".enter_description"), class: "form-control search_button_width" %>
+              <%= text_field_tag :"search[description_cont]", nil, placeholder: t(".enter_description"), class: "form-control search_button_width" %>
             </div>
             <% if user_signed_in? %>
               <div class="col-lg-4">
-                <%= label :name, t(".start_date"), class: "label_align margin_left_start_date" %>
-                <%= date_field_tag :start_date, @start_date.blank? ? DateTime.now.to_date : @start_date, min: DateTime.now.to_date, class:"form-control start_date_width" %>
+                <%= label :start_date, t(".start_date"), class: "label_align margin_left_start_date" %>
+                <%= date_field_tag :"search[start_date_cont]", @start_date.blank? ? DateTime.now.to_date : @start_date, min: DateTime.now.to_date, class:"form-control start_date_width" %>
               </div>
               <div class="col-lg-4">
                 <%= label :name, t(".end_date"), class: "label_align margin_right_end_date" %>
-                <%= date_field_tag :end_date, @end_date.blank? ? Settings.day.day_from_now.days.from_now.to_date : @end_date, min: Settings.day.day_from_now.days.from_now.to_date, class:"form-control end_date_width" %>
+                <%= date_field_tag :"search[end_date_cont]", @end_date.blank? ? Settings.day.day_from_now.days.from_now.to_date : @end_date, min: Settings.day.day_from_now.days.from_now.to_date, class:"form-control end_date_width" %>
               </div>
             <% end %>
             <div class="row">

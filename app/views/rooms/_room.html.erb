@@ -17,8 +17,8 @@
     <% if user_signed_in? %>
       <%= form_for room.bookings.build do |f| %>
         <%= f.hidden_field :room_id, value: room.id %>
-        <%= f.hidden_field :start_date, value: params[:start_date] %>
-        <%= f.hidden_field :end_date, value: params[:end_date] %>
+        <%= f.hidden_field :start_date, value: params[:search][:start_date_cont] %>
+        <%= f.hidden_field :end_date, value: params[:search][:end_date_cont] %>
         <div class="col-auto margin_button_room"><button class="btn btn-primary" type="submit"><%= t ".add_basket_button" %></button></div>
       <% end %>
     <% end %>

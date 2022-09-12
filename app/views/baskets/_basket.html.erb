@@ -1,12 +1,15 @@
 <div class="basket-product">
   <div class="item">
+    <%= hidden_field_tag "booking_id_#{basket_counter+1}", basket.id %>
+    <%= check_box "checkbox_#{basket_counter+1}", "result", {}, 1, 0 %>
     <div class="product-image">
       <%= image_tag basket.room_images.first.photo_url, class: "product-frame" %>
     </div>
+    <h1><%= link_to basket.room_name, room_url(basket.room) %></h1>
+    <br>
+    <%= basket.start_date.to_date %> -> <%= basket.end_date.to_date %>
     <div class="product-details">
-      <h1><%= link_to basket.room_name, room_url(basket.room) %></h1>
       <p><span><%= sanitize render_star(basket.room_rate_avg), attributes: %w(class data-icon) %></span></p>
-      <p><%= basket.start_date.to_date %> -> <%= basket.end_date.to_date %> </p>
     </div>
   </div>
   <div class="price"><%= number_to_currency(change_money(basket.room_price)) %></div>

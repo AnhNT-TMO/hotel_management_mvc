@@ -8,4 +8,12 @@ module HistoriesHelper
       paid: "chip info"
     }[status.to_sym]
   end
+
+  def check_valid_date params, value
+    if params.present?
+      params[value].blank? ? "" : params[value].to_date
+    else
+      ""
+    end
+  end
 end

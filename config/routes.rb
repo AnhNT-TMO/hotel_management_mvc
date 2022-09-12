@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "/baskets", to: "baskets#show"
     post "/payment", to: "payment#create"
     get "/history", to: "histories#show"
+    delete "/delete", to: "baskets#destroy"
     devise_for :users, skip: :omniauth_callbacks
     as :user do
       get "/login", to: "devise/sessions#new"
