@@ -2,46 +2,51 @@
 <section class="signup-section" id="edit">
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5">
-      <div class="col-md-12 col-lg-10 mx-auto text-center">
-        <i class="far fa fa-history fa-2x mb-2 text-white"></i>
-        <h2 class="text-white mb-5"><%= t ".history" %></h2>
-          <div class="row input-group-newsletter">
-            <%= search_form_for @search, url: history_path, class:"navbar-form" do |f| %>
-              <%= label :name, t(".create_date") %>
-              <%= f.date_field :by_start_date, value: check_valid_date(params[:search], :by_start_date) ,class:"form-control" %>
+      <%= search_form_for @search, url: history_path, class:"navbar-form" do |f| %>
+        <div class="col-md-12 col-lg-12 mx-auto text-center">
+          <i class="far fa fa-history fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5"><%= t ".history" %></h2>
+            <div class="row input-group-newsletter">
+                <div class="col-4">
+                  <%= label :name, t(".create_date"), class: "margin_label_right_bills" %>
+                  <%= f.date_field :by_start_date, value: check_valid_date(params[:search], :by_start_date) ,class:"form-control bill_width_date" %>
+                </div>
 
-              <%= label :name, t(".create_date") %>
-              <%= f.date_field :by_end_date, value:check_valid_date(params[:search], :by_end_date),class:"form-control" %>
+                <div class="col-4">
+                  <%= label :name, t(".end_date"), class: "margin_label_right_bills" %>
+                  <%= f.date_field :by_end_date, value: check_valid_date(params[:search], :by_end_date),class:"form-control bill_width_date" %>
+                </div>
 
-              <%= f.date_field :created_at_eq, class:"form-control" %>
-
-              <%= label :name, t(".phone") %>
-              <%= f.search_field :pc_cont , class:"form-control" %>
-
-              <%= button_tag(type: :submit, class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-search"></i>
-              <% end %>
-            <% end %>
-            <ul class="bookings" id="render_bookings">
-              <table id="miyazaki">
-                <thead>
-                  <tr>
-                    <th><%= sort_link(@search, :user_name, t(".name")) %></th>
-                    <th><%= sort_link(@search, :total_price, t(".price")) %></th>
-                    <th><%= t ".quantity" %></th>
-                    <th><%= t ".status" %></th>
-                    <th><%= t ".action" %></th>
-                  </tr>
-                <tbody>
-                  <%= render partial: "histories", collection: @bills %>
-                </tbody>
-              </table>
-            </ul>
-            <div id="pagy_containerr">
-              <%== pagy_bootstrap_nav @pagy %>
+                <div class="col-4">
+                  <%= label :name, t(".equal_date"), class: "margin_label_right_bills" %>
+                  <%= f.date_field :created_at_eq, class:"form-control bill_width_date" %>
+                </div>
+                <div>
+                  <%= f.submit t(".search"), class: "btn btn-primary margin-button-search-bill" %>
+                  <button id="clear_search_button" class="btn btn-warning" >Clear Search</button>
+                </div>
+              <%= link_to t(".download_excel"), history_path(format: :xlsx) %>
+              <ul class="bookings" id="render_bookings">
+                <table id="miyazaki">
+                  <thead>
+                    <tr>
+                      <th><%= sort_link(@search, :user_name, t(".name")) %></th>
+                      <th><%= sort_link(@search, :total_price, t(".price")) %></th>
+                      <th><%= t ".quantity" %></th>
+                      <th><%= t ".status" %></th>
+                      <th><%= t ".action" %></th>
+                    </tr>
+                  <tbody>
+                    <%= render partial: "histories", collection: @bills %>
+                  </tbody>
+                </table>
+              </ul>
+              <div id="pagy_containerr">
+                <%== pagy_bootstrap_nav @pagy %>
+              </div>
             </div>
-          </div>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>

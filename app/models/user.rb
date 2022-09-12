@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :async, :registerable,
-         :recoverable, :rememberable, :trackable,
+         :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   enum role: {

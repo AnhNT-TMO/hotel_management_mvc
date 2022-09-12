@@ -2,12 +2,17 @@ class HistoriesController < ApplicationController
   before_action :authenticate_user!, :check_exists_bill, :find_bill, only: :show
   authorize_resource class: false
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
+  end
 
   private
 
   def find_bill
-    @search = Bill.includes(:user).ransack(params[:search])
+    @search = Bill.ransack(params[:search])
     @search.sorts = ["total_price asc", "user_name asc"] if @search.sorts.empty?
     @pagy, @bills = pagy @search.result
                                 .by_current_user(current_user.id)

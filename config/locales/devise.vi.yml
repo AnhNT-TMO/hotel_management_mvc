@@ -35,6 +35,16 @@ vi:
       send_paranoid_instructions: "Nếu email của bạn đã có trong hệ thống, bạn sẽ nhận được mail trong vài phút tới."
       updated: "Mật khẩu của bạn đã cập nhật thành công, tài khoản đã được tự động đăng nhập."
       updated_not_active: "Mật khẩu thay đổi thành công."
+      new:
+        forgot_password: "Quên mật khẩu"
+        enter_email: "Điền vào email của bạn"
+        submit: "Gửi mail"
+      edit:
+        forgot_password: "Quên mật khẩu"
+        new_password: "Mật khẩu mới"
+        minium_character: "Ký tự tối thiểu"
+        password_confirm: "Xác nhận mật khẩu"
+        changed_password: "Đổi mật khẩu"
     registrations:
       destroyed: "Tạm biệt, tài khoản của bạn đã bị xóa, chúng tôi mong sẽ được phục vụ bạn lần sau."
       signed_up: "Chào mừng bạn! Bạn đã đăng nhập thành công."
@@ -44,10 +54,25 @@ vi:
       update_needs_confirmation: "Bạn đã thay đổi email thành công, check email mới để thay đổi email."
       updated: "Tài khoản của bạn đã cập nhật thành công."
       updated_but_not_signed_in: "Tài khoản của bạn đã cập nhật thành công, vì lý do bảo mật vui lòng đăng nhập lại."
-    sessions:
-      signed_in: "Đăng nhập thành công."
-      signed_out: "Đăng xuất thành công."
-      already_signed_out: "Đăng xuất thành công."
+      new:
+        enter_name: "Điền vào tên"
+        enter_email: "Điền vào email"
+        enter_phone: "Điền vào số điện thoại"
+        character: " Ký tự"
+        enter_password: "Điền vào mật khẩu"
+        enter_confirm_password: "Xác nhận mật khẩu"
+        confirm: "Đăng ký"
+      edit:
+        update: "Cập nhật"
+        cancel_account_button: "Xóa"
+        back: "Quay lại"
+        cancel_account: "Xóa tài khoản"
+        leave_blank: "Bỏ trống nếu bạn không muốn đổi mật khẩu"
+        password_label: "Mật khẩu"
+        password_confirm: "Nhập lại mật khẩu"
+        current_password: "Mật khẩu cũ"
+        blank_if_not_change: "Bỏ trống nếu bạn không muốn đổi mật khẩu"
+        confirm_delete: "Bạn đã chắc chắn muốn xóa tài khoản?"
     unlocks:
       send_instructions: "Bạn sẽ nhận được một email mở khóa tài khoản, vui lòng kiểm tra và làm theo hướng dẫn."
       send_paranoid_instructions: "Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được một email để xác minh."
@@ -69,22 +94,12 @@ vi:
         enter_password: "Điền vào password"
         remember_me: "Lưu đăng nhập"
         submit: "Đăng nhập"
+      already_signed_out: "Đăng xuất thành công."
+      user:
+        signed_in: "Đăng nhập thành công."
+        signed_out: "Đăng xuất thành công."
     shared:
       links:
         login: "Đăng nhập"
         sign_up: "Đăng ký"
         forgot_password: "Quên mật khẩu"
-    passwords:
-      new:
-        forgot_password: "Quên mật khẩu"
-        enter_email: "Điền vào email của bạn"
-        submit: "Gửi mail"
-    registrations:
-      new:
-        enter_name: "Điền vào tên"
-        enter_email: "Điền vào email"
-        enter_phone: "Điền vào số điện thoại"
-        character: " Ký tự"
-        enter_password: "Điền vào mật khẩu"
-        enter_confirm_password: "Xác nhận mật khẩu"
-        confirm: "Đăng ký"
