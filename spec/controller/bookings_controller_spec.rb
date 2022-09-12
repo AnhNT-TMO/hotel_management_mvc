@@ -1,5 +1,6 @@
 require "rails_helper"
 require "spec_helper"
+require "cancan/matchers"
 RSpec.describe BookingsController, type: :controller do
   let!(:user) { FactoryBot.create :user }
   let!(:bill) { FactoryBot.create :bill, user: user }
@@ -9,7 +10,7 @@ RSpec.describe BookingsController, type: :controller do
   let!(:book2) { FactoryBot.create :booking, user: user, bill: bill, room: room2, status: :confirm }
 
   before :each do
-    log_in user
+    sign_in user
   end
 
   describe "create new booking" do

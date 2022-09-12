@@ -6,10 +6,11 @@ class Admin::AdminController < ApplicationController
   def index; end
 
   private
+
   def check_admin
     return if current_user.admin?
 
-    flash[:danger] = t ".logged_in_alert"
+    flash[:warning] = t ".denied_user"
     redirect_to root_path
   end
 end

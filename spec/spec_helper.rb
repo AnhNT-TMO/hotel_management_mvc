@@ -1,8 +1,8 @@
-require 'factory_bot'
-require 'support/database_cleaner'
-require 'simplecov'
-require 'simplecov-rcov'
-require 'shoulda/matchers'
+require "factory_bot"
+require "support/database_cleaner"
+require "simplecov"
+require "simplecov-rcov"
+require "shoulda/matchers"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

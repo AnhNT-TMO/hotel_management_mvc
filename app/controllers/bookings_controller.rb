@@ -4,9 +4,9 @@ class BookingsController < ApplicationController
                 :fill_params, only: :create
   before_action :authenticate_user!, :find_booking,
                 :check_status_booking, only: :destroy
+  load_and_authorize_resource
 
   def create
-    @booking = Booking.new booking_params
     if @booking.save
       flash[:success] = t ".room_request_success"
     else
@@ -26,8 +26,8 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @pagy, @bookings = pagy Booking.by_bills(params[:bill_id])
-                                   .booking_order,
+    @pagy, @bookings = pagy @bookings.by_bills(params[:bill_id])
+                                     .booking_order,
                             items: Settings.booking.booking_per_page
   end
 

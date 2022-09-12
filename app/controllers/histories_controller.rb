@@ -1,5 +1,6 @@
 class HistoriesController < ApplicationController
   before_action :authenticate_user!, :check_exists_bill, :find_bill, only: :show
+  authorize_resource class: false
 
   def show; end
 

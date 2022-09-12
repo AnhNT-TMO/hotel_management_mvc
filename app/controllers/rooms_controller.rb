@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :find_rooms, only: :show
   before_action :check_blank_date, :check_date, only: :index
+  load_and_authorize_resource
 
   def index
     if user_signed_in?

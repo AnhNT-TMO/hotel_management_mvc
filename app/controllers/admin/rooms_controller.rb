@@ -1,8 +1,10 @@
 class Admin::RoomsController < Admin::AdminController
+  load_and_authorize_resource
   before_action :load_room, only: %i(edit update)
 
   def index
-    @pagy, @rooms = pagy Room.recent_rooms.by_types(params[:types]),
+    @list_rooms_ability = @rooms.accessible_by(current_ability)
+    @pagy, @rooms = pagy @rooms.recent_rooms.by_types(params[:types]),
                          items: Settings.room.room_per_page
   end
 

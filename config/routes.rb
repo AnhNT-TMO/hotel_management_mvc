@@ -1,11 +1,12 @@
 require "sidekiq/web"
 Rails.application.routes.draw do
+  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
   scope "(:locale)", locale: /en|vi/ do
     root "pages#home"
     get "/baskets", to: "baskets#show"
     post "/payment", to: "payment#create"
     get "/history", to: "histories#show"
-    devise_for :users
+    devise_for :users, skip: :omniauth_callbacks
     as :user do
       get "/login", to: "devise/sessions#new"
       post "/login", to: "devise/sessions#create"

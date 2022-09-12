@@ -1,4 +1,4 @@
-class User::RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < Devise::RegistrationsController
   after_action :send_mail, only: :create
 
   def create
@@ -13,6 +13,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def send_mail
-    SendBillMailer.register_mailer(@user).deliver_later
+    RegisterMailer.register_mailer(@user).deliver_later
   end
 end
