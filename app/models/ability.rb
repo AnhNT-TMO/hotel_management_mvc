@@ -9,7 +9,7 @@ class Ability
     can :read, Room
     can [:read, :create, :destroy], Booking, user_id: user.id
     can :read, Bill, user_id: user.id
-    can :manage, User, id: user.id
+    can :read, User, id: user.id
     can [:read, :destroy], :basket
     can :read, :history
 

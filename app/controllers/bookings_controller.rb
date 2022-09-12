@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
 
   def index
     @pagy, @bookings = pagy @bookings.by_bills(params[:bill_id])
+                                     .checking
                                      .booking_order,
                             items: Settings.booking.booking_per_page
   end

@@ -509,6 +509,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   carrierwave
+  caxlsx_rails
   cocoon
   config
   database_cleaner (~> 1.5)
@@ -522,6 +523,7 @@ DEPENDENCIES
   image_processing (= 1.9.3)
   jbuilder (~> 2.7)
   jquery-rails
+  jwt
   listen (~> 3.3)
   mysql2 (~> 0.5)
   net-smtp

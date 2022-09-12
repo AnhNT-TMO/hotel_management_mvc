@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="price"><%= number_to_currency(change_money(basket.room_price)) %></div>
-  <div class="subtotal"><%= number_to_currency(change_money(basket.total_price)) %></div>
+  <div class="subtotal" id="subtotal_<%= basket_counter+1 %>" value="<%= change_money(basket.total_price) %>"><%= number_to_currency(change_money(basket.total_price)) %></div>
   <div class="remove">
     <%= link_to basket, method: :delete, data: { confirm: t(".confirm_dialog") } do %>
       <i class="fa fa-trash fa-2xl" ></i>
