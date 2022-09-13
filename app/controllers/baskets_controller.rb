@@ -1,5 +1,5 @@
 class BasketsController < ApplicationController
-  before_action :find_bill, :filter_booking, only: :show
+  before_action :authenticate_user!, :find_bill, :filter_booking, only: :show
 
   def show; end
 

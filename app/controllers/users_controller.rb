@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, :find_user,
+  before_action :authenticate_user!, :find_user,
                 except: %i(new create)
   before_action :correct_user, only: %i(edit update)
   before_action :authen_old_password, only: :update
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
 
     flash[:danger] = t ".login_message"
     redirect_to login_url

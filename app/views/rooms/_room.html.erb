@@ -14,7 +14,7 @@
     </figcaption><a href="<%= room_url(room) %>"></a>
   </figure>
   <div>
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <%= form_for room.bookings.build do |f| %>
         <%= f.hidden_field :room_id, value: room.id %>
         <%= f.hidden_field :start_date, value: params[:start_date] %>

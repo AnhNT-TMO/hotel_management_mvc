@@ -1,0 +1,90 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+vi:
+  devise:
+    confirmations:
+      confirmed: "Email của bạn đã được cài thành công."
+      send_instructions: "Bạn sẽ nhận được một email trong vài phút tới."
+      send_paranoid_instructions: "Nếu email của bạn đã có trong hệ thống, bạn sẽ nhận được một email trong vài phút tới."
+    failure:
+      already_authenticated: "Bạn đã loggin rồi mà."
+      inactive: "Tài khoản của bạn chưa được active đâu."
+      invalid: "Hết hạn %{authentication_keys} hoặc mật khẩu."
+      locked: "Tài khoản của bạn đã bị khóa."
+      last_attempt: "Bạn còn một lần thử nữa trước khi tài khoản bị khóa."
+      not_found_in_database: "Không tìm thấy %{authentication_keys} hoặc password."
+      timeout: "Phiên làm việc đã hết hạn, vui lòng đăng nhập lại."
+      unauthenticated: "Bạn cần đăng nhập trước khi làm việc này."
+      unconfirmed: "Bạn cần phải confirm tài khoản trước đã."
+    mailer:
+      confirmation_instructions:
+        subject: "Xác minh thông tin"
+      reset_password_instructions:
+        subject: "Cập nhật mật khẩu"
+      unlock_instructions:
+        subject: "Mở khóa"
+      email_changed:
+        subject: "Thay đổi email"
+      password_change:
+        subject: "Thay đổi mật khẩu"
+    omniauth_callbacks:
+      failure: "Không thể xác mình từ %{kind} vì \"%{reason}\"."
+      success: "Xác minh thành công từ %{kind} tài khoản."
+    passwords:
+      no_token: "Bạn không thể quay lại đây nếu chưa nhận được mail reset mật khẩu, vui lòng đợi và làm theo hướng dẫn trong mail."
+      send_instructions: "Bạn sẽ nhận được một mail reset mật khẩu trong vài phút tới."
+      send_paranoid_instructions: "Nếu email của bạn đã có trong hệ thống, bạn sẽ nhận được mail trong vài phút tới."
+      updated: "Mật khẩu của bạn đã cập nhật thành công, tài khoản đã được tự động đăng nhập."
+      updated_not_active: "Mật khẩu thay đổi thành công."
+    registrations:
+      destroyed: "Tạm biệt, tài khoản của bạn đã bị xóa, chúng tôi mong sẽ được phục vụ bạn lần sau."
+      signed_up: "Chào mừng bạn! Bạn đã đăng nhập thành công."
+      signed_up_but_inactive: "Bạn đã đăng nhập thành công nhưng tài khoản của bạn chưa được active, vui lòng check mail để active tài khoản."
+      signed_up_but_locked: "Tài khoản của bạn đã bị khóa, vui lòng liên hệ admin để kiểm tra."
+      signed_up_but_unconfirmed: "Email đã được gửi tới mail của bạn, vui lòng check mail và làm theo hướng dẫn."
+      update_needs_confirmation: "Bạn đã thay đổi email thành công, check email mới để thay đổi email."
+      updated: "Tài khoản của bạn đã cập nhật thành công."
+      updated_but_not_signed_in: "Tài khoản của bạn đã cập nhật thành công, vì lý do bảo mật vui lòng đăng nhập lại."
+    sessions:
+      signed_in: "Đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+      already_signed_out: "Đăng xuất thành công."
+    unlocks:
+      send_instructions: "Bạn sẽ nhận được một email mở khóa tài khoản, vui lòng kiểm tra và làm theo hướng dẫn."
+      send_paranoid_instructions: "Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được một email để xác minh."
+      unlocked: "Tài khoản của bạn đã được mở khóa thành công, vui lòng đăng nhập để kiểm tra."
+  errors:
+    messages:
+      already_confirmed: "tài khoản đã được confirm, vui lòng đăng nhập lại"
+      confirmation_period_expired: "cần phải confirm với %{period}, làm ơn gửi một cái mới"
+      expired: "đã hết hạn, vui lòng gửi cái mới"
+      not_found: "không tìm thấy"
+      not_locked: "không bị khóa"
+      not_saved:
+        one: "1 lỗi của %{resource} từ quá trình lưu:"
+        other: "%{count} lỗi bị cấm từ %{resource} từ quá trình lưu:"
+  sessions:
+      new:
+        email: "Email"
+        enter_email: "Điền vào email"
+        enter_password: "Điền vào password"
+        remember_me: "Lưu đăng nhập"
+        submit: "Đăng nhập"
+    shared:
+      links:
+        login: "Đăng nhập"
+        sign_up: "Đăng ký"
+        forgot_password: "Quên mật khẩu"
+    passwords:
+      new:
+        forgot_password: "Quên mật khẩu"
+        enter_email: "Điền vào email của bạn"
+        submit: "Gửi mail"
+    registrations:
+      new:
+        enter_name: "Điền vào tên"
+        enter_email: "Điền vào email"
+        enter_phone: "Điền vào số điện thoại"
+        character: " Ký tự"
+        enter_password: "Điền vào mật khẩu"
+        enter_confirm_password: "Xác nhận mật khẩu"
+        confirm: "Đăng ký"

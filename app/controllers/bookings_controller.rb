@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
-  before_action :logged_in_user, :check_date, :find_room, :check_exist_booking,
-                :find_bill, :check_quantity_basket, :fill_params, only: :create
-  before_action :logged_in_user, :find_booking,
+  before_action :authenticate_user!, :check_date, :find_room,
+                :check_exist_booking, :find_bill, :check_quantity_basket,
+                :fill_params, only: :create
+  before_action :authenticate_user!, :find_booking,
                 :check_status_booking, only: :destroy
 
   def create

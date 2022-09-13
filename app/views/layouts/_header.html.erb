@@ -3,15 +3,15 @@
     <%= link_to t(".hotel_name"), root_path, class: "navbar-brand text-black font_size_header" %>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
-        <% if logged_in? %>
+        <% if user_signed_in? %>
           <li class="nav-item"><%= link_to t(".history"), history_path, class: "nav-link text-black font_size_header" %></li>
           <li class="nav-item"><%= link_to t(".view"), rooms_path, class: "nav-link text-black font_size_header" %></li>
           <li class="dropdown nav-link">
             <%= link_to current_user.name, "#", class: "dropdown dropdown-toggle text-black font_size_header" %>
             <div class="dropdown-content">
               <%= link_to t(".profile"), "#" %>
-              <%= link_to t(".settings"), edit_user_path(current_user) %>
-              <%= button_to t(".log_out"), logout_path, method: :delete, class: "btn btn-danger" %>
+              <%= link_to t(".settings"), edit_user_registration_path %>
+              <%= button_to t(".log_out"), destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
             </div>
           </li>
           <li class="nav-item">

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :logged_in_user, :check_quantity_review,
+  before_action :authenticate_user!, :check_quantity_review,
                 :check_star_review, :check_user_booking_room, only: :create
   def new; end
 
