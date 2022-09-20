@@ -21,4 +21,8 @@ module ApplicationHelper
       status == "confirm" ? "text-success" : "text-danger"
     end
   end
+
+  def alert_flash_now message
+    flash.now[:danger] = message
+  end
 end

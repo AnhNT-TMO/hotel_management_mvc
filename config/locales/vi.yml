@@ -288,8 +288,6 @@ vi:
       room: Phòng bạn đặt là
       reason: Với lý do
       sorry: Rất xin lỗi bạn vì sự bất tiện này. Cảm ơn bạn vì đã lựa chọn khách sạn của chúng tôi
-  devise:
-    
   errors:
     messages:
       not_saved: "Không lưu được"

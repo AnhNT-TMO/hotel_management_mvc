@@ -1,5 +1,6 @@
 class BasketsController < ApplicationController
   before_action :authenticate_user!, :find_bill, :filter_booking, only: :show
+  authorize_resource class: false
 
   def show; end
 

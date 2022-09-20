@@ -3,4 +3,4 @@ User.create!(name: "TMO",
   phone: "0974626374",
   password: "123456",
   password_confirmation: "123456",
-  role: 0)
+  role: 1)

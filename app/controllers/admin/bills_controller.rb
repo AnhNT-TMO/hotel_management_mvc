@@ -1,4 +1,5 @@
 class Admin::BillsController < Admin::AdminController
+  load_and_authorize_resource
   before_action :load_bill, only: %i(edit update)
   after_action :send_mail, only: %i(update)
   def index

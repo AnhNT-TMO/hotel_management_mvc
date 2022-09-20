@@ -1,4 +1,5 @@
 class Admin::BookingsController < Admin::AdminController
+  load_and_authorize_resource
   before_action :load_booking, only: %i(edit update)
   after_action :send_mail, only: %i(update)
 

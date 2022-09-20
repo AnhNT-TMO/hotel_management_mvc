@@ -52,17 +52,17 @@ vi:
       send_instructions: "Bạn sẽ nhận được một email mở khóa tài khoản, vui lòng kiểm tra và làm theo hướng dẫn."
       send_paranoid_instructions: "Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được một email để xác minh."
       unlocked: "Tài khoản của bạn đã được mở khóa thành công, vui lòng đăng nhập để kiểm tra."
-  errors:
-    messages:
-      already_confirmed: "tài khoản đã được confirm, vui lòng đăng nhập lại"
-      confirmation_period_expired: "cần phải confirm với %{period}, làm ơn gửi một cái mới"
-      expired: "đã hết hạn, vui lòng gửi cái mới"
-      not_found: "không tìm thấy"
-      not_locked: "không bị khóa"
-      not_saved:
-        one: "1 lỗi của %{resource} từ quá trình lưu:"
-        other: "%{count} lỗi bị cấm từ %{resource} từ quá trình lưu:"
-  sessions:
+    errors:
+      messages:
+        already_confirmed: "tài khoản đã được confirm, vui lòng đăng nhập lại"
+        confirmation_period_expired: "cần phải confirm với %{period}, làm ơn gửi một cái mới"
+        expired: "đã hết hạn, vui lòng gửi cái mới"
+        not_found: "không tìm thấy"
+        not_locked: "không bị khóa"
+        not_saved:
+          one: "1 lỗi của %{resource} từ quá trình lưu:"
+          other: "%{count} lỗi bị cấm từ %{resource} từ quá trình lưu:"
+    sessions:
       new:
         email: "Email"
         enter_email: "Điền vào email"
