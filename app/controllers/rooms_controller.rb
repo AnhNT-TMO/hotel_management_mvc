@@ -6,8 +6,8 @@ class RoomsController < ApplicationController
   def index
     if user_signed_in?
       filter_if_logged_in
-      @start_date = params[:start_date]
-      @end_date = params[:end_date]
+      @start_date = params[:search][:start_date_cont]
+      @end_date = params[:search][:end_date_cont]
     else
       filter_if_guest
     end
@@ -26,18 +26,25 @@ class RoomsController < ApplicationController
   private
 
   def filter_if_logged_in
-    @room_ids = Room.new.room_ids(params[:start_date],
-                                  params[:end_date],
-                                  current_user.id)
-    @pagy, @rooms = pagy Room.not_ids(@room_ids)
-                             .by_description(params[:description]),
+    set_params_search
+    @search = Room.ransack(params[:search],
+                           auth_object: set_ransack_auth_object)
+    @pagy, @rooms = pagy @search.result,
                          items: Settings.room.room_per_page,
                          link_extra: 'data-remote="true"'
+    params[:description]
+  end
+
+  def set_params_search
+    @room_ids = Room.new.room_ids(params[:search][:start_date_cont],
+                                  params[:search][:end_date_cont],
+                                  current_user.id)
+    params[:search][:id_not_in] = @room_ids
   end
 
   def filter_if_guest
     @pagy, @rooms = pagy Room.room_order
-                             .by_description(params[:description]),
+                             .by_description(params[:search][:description]),
                          items: Settings.room.room_per_page,
                           link_extra: 'data-remote="true"'
   end
@@ -51,7 +58,9 @@ class RoomsController < ApplicationController
   end
 
   def check_date
-    return if params[:start_date] < params[:end_date]
+    if params[:search][:start_date_cont] < params[:search][:end_date_cont]
+      return
+    end
 
     flash[:danger] = t ".date_danger"
     @pagy, @rooms = pagy Room.room_order, items: Settings.room.room_per_page
@@ -59,18 +68,22 @@ class RoomsController < ApplicationController
   end
 
   def init_date
-    params[:start_date] =
-      params[:start_date].presence || DateTime.now.to_date
-    params[:end_date] =
-      params[:end_date].presence ||
-      Settings.day.day_from_now.days.from_now.to_date
+    return unless params[:search].nil?
+
+    params[:search] =
+      {start_date_cont: DateTime.now.to_date,
+       end_date_cont: Settings.day.day_from_now.days.from_now.to_date}
   end
 
   def check_blank_date
     init_date
-    return if params[:start_date].present? && params[:end_date].present?
+    if params[:search][:start_date_cont].present? &&
+       params[:search][:end_date_cont].present?
+      nil
+    end
+  end
 
-    @pagy, @rooms = pagy Room.room_order, items: Settings.room.room_per_page
-    render :index
+  def set_ransack_auth_object
+    current_user.admin? ? :admin : :user
   end
 end

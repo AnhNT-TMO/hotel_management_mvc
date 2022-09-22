@@ -2,10 +2,10 @@ require "rails_helper"
 require "spec_helper"
 require "cancan/matchers"
 RSpec.describe BookingsController, type: :controller do
-  let!(:user) { FactoryBot.create :user }
-  let!(:bill) { FactoryBot.create :bill, user: user }
-  let!(:room1) { FactoryBot.create :room }
-  let!(:room2) { FactoryBot.create :room }
+  let(:user) { FactoryBot.create :user }
+  let(:bill) { FactoryBot.create :bill, user: user }
+  let(:room1) { FactoryBot.create :room }
+  let(:room2) { FactoryBot.create :room }
   let!(:book1) { FactoryBot.create :booking, user: user, bill: bill, room: room1, status: :checking }
   let!(:book2) { FactoryBot.create :booking, user: user, bill: bill, room: room2, status: :confirm }
 
@@ -156,12 +156,15 @@ RSpec.describe BookingsController, type: :controller do
 
     context "when invalid params" do
       before do
+        allow_any_instance_of(Booking).to receive(:save).and_return(false)
+
         post :create, params: {
           booking: {
             start_date: 5.days.from_now.to_date,
             end_date: 7.days.from_now.to_date,
             total_price: 1000,
             status: :pending,
+            user_id: user.id,
             room_id: room1.id,
             bill_id: bill.id
           }

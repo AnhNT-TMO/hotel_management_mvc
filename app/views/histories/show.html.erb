@@ -6,12 +6,28 @@
         <i class="far fa fa-history fa-2x mb-2 text-white"></i>
         <h2 class="text-white mb-5"><%= t ".history" %></h2>
           <div class="row input-group-newsletter">
+            <%= search_form_for @search, url: history_path, class:"navbar-form" do |f| %>
+              <%= label :name, t(".create_date") %>
+              <%= f.date_field :by_start_date, value: check_valid_date(params[:search], :by_start_date) ,class:"form-control" %>
+
+              <%= label :name, t(".create_date") %>
+              <%= f.date_field :by_end_date, value:check_valid_date(params[:search], :by_end_date),class:"form-control" %>
+
+              <%= f.date_field :created_at_eq, class:"form-control" %>
+
+              <%= label :name, t(".phone") %>
+              <%= f.search_field :pc_cont , class:"form-control" %>
+
+              <%= button_tag(type: :submit, class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-search"></i>
+              <% end %>
+            <% end %>
             <ul class="bookings" id="render_bookings">
               <table id="miyazaki">
                 <thead>
                   <tr>
-                    <th><%= t ".name" %></th>
-                    <th><%= t ".price" %></th>
+                    <th><%= sort_link(@search, :user_name, t(".name")) %></th>
+                    <th><%= sort_link(@search, :total_price, t(".price")) %></th>
                     <th><%= t ".quantity" %></th>
                     <th><%= t ".status" %></th>
                     <th><%= t ".action" %></th>

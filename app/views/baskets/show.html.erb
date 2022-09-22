@@ -13,14 +13,17 @@
       <button class="promo-code-cta"><%= t ".apply" %></button>
     </div>
     <div class="basket-labels">
+      <input id="checkbox-all" name="checkbox-all" type= "checkbox"/>
       <ul>
         <li class="item item-heading"><%= t ".item" %></li>
         <li class="price"><%= t ".price" %></li>
         <li class="subtotal"><%= t ".subtotal" %></li>
       </ul>
     </div>
-
-    <%= render partial: "basket", collection: @bookings %>
+    <%= form_tag delete_url, method: :delete do %>
+      <%= render partial: "basket", collection: @bookings %>
+      <%= submit_tag t(".delete"), data: { confirm: t(".confirm_dialog") }, class: "checkout-cta" %>
+    <% end %>
     <div class="basket-product">
       <% if @bookings.present? %>
         <%== pagy_bootstrap_nav @pagy %>

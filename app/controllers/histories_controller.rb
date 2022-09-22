@@ -7,13 +7,12 @@ class HistoriesController < ApplicationController
   private
 
   def find_bill
-    @pagy, @bills = pagy Bill.by_current_user(current_user.id)
-                             .find_bill_was_payment,
+    @search = Bill.includes(:user).ransack(params[:search])
+    @search.sorts = ["total_price asc", "user_name asc"] if @search.sorts.empty?
+    @pagy, @bills = pagy @search.result
+                                .by_current_user(current_user.id)
+                                .find_bill_was_payment,
                          items: Settings.history.history_per_page
-    return if @bills
-
-    flash[:danger] = t ".alert_history"
-    redirect_to root_path
   end
 
   def check_exists_bill

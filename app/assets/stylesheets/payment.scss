@@ -212,6 +212,12 @@ li.subtotal:before {
   border: 1px solid #aaa;
 }
 
+.product-image img:hover {
+  transform: scaleY(1.5);
+  transition: all 1s;
+}
+
+
 .product-details {
   padding: 0 1.5rem;
   -webkit-box-sizing: border-box;

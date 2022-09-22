@@ -27,6 +27,7 @@ status).freeze
   scope :recent_bookings, ->{order(created_at: :asc)}
   scope :booking_order, ->{order(id: :asc)}
   scope :find_booking, ->(user_id){where user_id: user_id}
+  scope :by_id, ->(booking_id){where id: booking_id}
   scope :check_exist_booking,
         (lambda do |start_date, end_date|
           if start_date.present? && end_date.present?
@@ -34,7 +35,6 @@ status).freeze
                   start_date: start_date, end_date: end_date)
           end
         end)
-
   scope :find_room_with_id, ->(room_id){where room_id: room_id}
   scope :find_booking_was_not_pending, ->{where.not(status: :pending)}
   scope :check_user_booking_confirm,
@@ -69,5 +69,9 @@ status).freeze
     else
       bill.first.save
     end
+  end
+
+  def self.find_booking_by_id id
+    Booking.by_id(id).first
   end
 end
