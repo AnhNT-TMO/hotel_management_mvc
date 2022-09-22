@@ -24,6 +24,7 @@ class Admin::BillsController < Admin::AdminController
   end
 
   private
+
   def load_bill
     @bill = Bill.find_by id: params[:id]
     return if @bill
