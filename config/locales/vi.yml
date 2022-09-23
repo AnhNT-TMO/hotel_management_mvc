@@ -125,6 +125,11 @@ vi:
       status: "Trạng thái"
       action: "Hành động"
       bill_not_exists: "Không có bill nào trong lịch sử"
+      create_date: "Ngày bắt đầu tạo bill"
+      end_date: "Ngày kết thúc tạo bill"
+      equal_date: "Chọn ngày tạo chính xác"
+      search: "Tìm kiếm"
+      download_excel: "Tải về báo cáo"
   bookings:
     booking:
       confirm_dialog: "Bạn chắc chắn chưa?"

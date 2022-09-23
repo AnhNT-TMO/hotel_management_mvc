@@ -2276,7 +2276,7 @@ progress {
 
 .form-control {
   display: block;
-  width: 120%;
+  width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -13078,19 +13078,22 @@ body {
 
 .start_date_width {
   width: 60% !important;
-  margin-left: 6rem !important;
+  float: right;
+  margin-right: 10vh;
 }
 
 .margin_left_start_date {
-  margin-left: 1.5rem !important;
+  float: left;
 }
 
 .margin_right_end_date {
-  margin-right: 10.5rem !important;
+  float: left;
 }
 
 .end_date_width {
   width: 60% !important;
+  margin-right: 10vh;
+  float: right;
 }
 
 .padding_signup {
@@ -13145,4 +13148,28 @@ body {
 
 .margin_top_header {
   margin-top: 3.5rem;
+}
+
+.display_message {
+  display: none;
+}
+
+.field_with_errors {
+  padding: 0;
+}
+
+.margin_top_histories {
+  margin-top: 10px;
+}
+
+.bill_width_date {
+  width: 60% !important;
+}
+
+.margin_label_right_bills {
+  float: left;
+}
+
+.margin-button-search-bill {
+  margin-top: 0px !important;
 }

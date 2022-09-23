@@ -1,5 +1,30 @@
 <%= render "layouts/header" %>
-<div class="row">
-  <%= render "form" %>
-</div>
+<section class="signup-section" id="edit">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5">
+      <div class="col-md-10 col-lg-8 mx-auto text-center">
+        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+        <h2 class="text-white mb-5"><%= t ".edit" %></h2>
+          <div class="row input-group-newsletter">
+            <%= form_for @user, html: {class: "form-signup"} do |f| %>
+              <%= render "shared/error_messages", object: f.object %>
+              <div class="row">
+                <%= f.text_field :name, class: "form-control", placeholder: t(".enter_name") %>
+              </div>
+              <div class="row">
+                <%= f.password_field :old_password, class: "form-control", placeholder: t(".enter_old_password") %>
+              </div>
+              <div class="row">
+                <%= f.password_field :password, class: "form-control", placeholder: t(".enter_new_password") %>
+              </div>
+              <div class="row">
+                <%= f.password_field :password_confirmation, class: "form-control", placeholder: t(".enter_confirm_password") %>
+              </div>
+              <%= f.submit t(".save_button"), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
 <%= render "layouts/footer" %>
