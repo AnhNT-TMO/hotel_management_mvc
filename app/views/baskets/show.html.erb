@@ -7,11 +7,6 @@
 <h2 class="text-black mb-5 align_center_basket"><%= t ".basket" %></h2>
 <main>
   <div class="basket">
-    <div class="basket-module">
-      <label for="promo-code"><%= t ".promotion" %></label>
-      <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-      <button class="promo-code-cta"><%= t ".apply" %></button>
-    </div>
     <div class="basket-labels">
       <input id="checkbox-all" name="checkbox-all" type= "checkbox"/>
       <ul>
@@ -35,7 +30,7 @@
       <div class="summary-total-items"><%= @bookings.count %> <%= t ".item_in_bag" %></div>
       <div class="summary-subtotal">
         <div class="subtotal-title"><%= t ".subtotal" %></div>
-        <div class="subtotal-value final-value" id="basket-subtotal"><%= number_to_currency(change_money(find_total_price(@bookings))) %></div>
+        <div class="subtotal-value final-value" id="basket-subtotal">0</div>
       </div>
       <div class="summary-promo">
         <div class="promo-title"><%= t ".promotion_price" %></div>
@@ -43,11 +38,15 @@
       </div>
       <div class="summary-total">
         <div class="total-title"><%= t ".total_price" %></div>
-        <div class="total-value final-value" id="basket-total"><%= number_to_currency(change_money(find_total_price(@bookings))) %></div>
+        <div class="total-value final-value" id="basket-total">0</div>
       </div>
       <div class="summary-checkout">
-        <%= form_for @bill, url: payment_path, method: :post, :html => {:class => "form-signup"} do |f| %>
-          <%= f.hidden_field :bill_id, value: @bill.id %>
+        <%= form_tag payment_url, method: :post, :html => {:class => "form-signup"} do |f| %>
+          <% @bookings.each_with_index do |booking,index| %>
+            <%= hidden_field_tag "booking_id_#{index+1}", booking.id %>
+            <%= hidden_field_tag "checkbox_#{index+1}", 0 %>
+          <% end %>
+          <%= hidden_field_tag :bill_id, @bill.id %>
           <div class="col"><button class="checkout-cta" id="submitButton" type="submit"><%= t ".payment" %></button></div>
         <% end %>
       </div>

@@ -1,6 +1,5 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   include Pagy::Backend
-  protect_from_forgery with: :exception
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -48,5 +47,22 @@ class ApplicationController < ActionController::Base
       remember_me)
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
+  def not_found
+    render json: {error: t(".not_found")}
+  end
+
+  def authorize_request
+    header = request.headers["Authorization"]
+    header = header.split(" ").last if header
+    begin
+      @decoded = JsonWebToken.decode(header)
+      @current_user ||= User.find(@decoded[:user_id])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: {errors: e.message}, status: :unauthorized
+    rescue JWT::DecodeError => e
+      render json: {errors: e.message}, status: :unauthorized
+    end
   end
 end

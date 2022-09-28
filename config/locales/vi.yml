@@ -116,6 +116,7 @@ vi:
     create:
       success_payment: "Thanh toán thành công"
       error_payment: "Có một người đã đặt phòng của bạn mất rồi :( !!!"
+      blank_selected: "Vui lòng chọn ít nhất 1 phòng để thanh toán"
   histories:
     show:
       history: "Lịch sử đặt phòng"
@@ -147,6 +148,8 @@ vi:
       room_request_success: "Đặt phòng thành công"
       room_request_denied: "Đặt phòng thất bại"
       room_was_booking: "Phòng đã được đặt"
+      basket_full: "Giỏ hàng đã đầy, vui lòng thanh toán để đặt tiếp"
+
   reviews:
     create:
       quantity_review: "Bạn đã đạt số lượng review nhất định, vui lòng đặt thêm để review thêm"
@@ -298,3 +301,9 @@ vi:
   errors:
     messages:
       not_saved: "Không lưu được"
+  api:
+    v1:
+      cannot_delete_update: "Bạn không có quyền sửa hoặc xóa user này"
+      success: "Xóa thành công"
+      unauthorized: "Đăng nhập không thành công"
+      cannot_found: "Không tìm thấy đối tượng này"

@@ -41,6 +41,7 @@ status).freeze
         (lambda do |user_id, room_id|
           where(user_id: user_id, room_id: room_id)
         end)
+  scope :by_ids, ->(ids){where("id IN (?)", ids)}
 
   def calculate_total_price room
     (end_date.to_date -
@@ -73,5 +74,13 @@ status).freeze
 
   def self.find_booking_by_id id
     Booking.by_id(id).first
+  end
+
+  def self.ransackable_attributes auth_object = nil
+    if auth_object == :user
+      %w(start_date end_date)
+    else
+      %w(name)
+    end
   end
 end

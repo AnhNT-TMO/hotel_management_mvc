@@ -28,7 +28,7 @@ class BasketsController < ApplicationController
   def find_bookings_selected
     @bookings = []
     (1..3).each do |index|
-      if !params["checkbox_#{index}"].nil? &&
+      if params["checkbox_#{index}"].present? &&
          params["checkbox_#{index}"][:result] == "1"
         @bookings << params["booking_id_#{index}"]
       end
@@ -37,7 +37,8 @@ class BasketsController < ApplicationController
   end
 
   def filter_booking
-    @pagy, @bookings = pagy Booking.by_bills(@bill.id)
+    @pagy, @bookings = pagy Booking.find_booking(current_user.id)
+                                   .pending
                                    .booking_order,
                             items: Settings.booking.booking_per_page,
                             link_extra: 'data-remote="true"'
