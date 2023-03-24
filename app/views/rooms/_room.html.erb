@@ -1,5 +1,5 @@
 <div class="col-lg-4">
-  <figure class="snip1418"><%= image_tag room.images.first.photo_url, class: "img-fluid" %>
+  <figure class="snip1418"><%= image_tag(room.images.first&.photo_url, class: "img-fluid") if room.images.first&.photo_url.present? %>
     <div class="add-to-cart">
     </div>
     <figcaption>

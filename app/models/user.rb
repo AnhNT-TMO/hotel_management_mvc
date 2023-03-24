@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  # devise :database_authenticatable, :async, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable,
-  #        :lockable, :omniauthable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable, :async, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :lockable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   enum role: {
     user: 0,
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   },
     format: {with: Settings.user.email.regex_format}
 
-  has_secure_password
+  # has_secure_password
 
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

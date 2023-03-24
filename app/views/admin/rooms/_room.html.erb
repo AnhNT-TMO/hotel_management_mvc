@@ -1,6 +1,6 @@
 <tbody>
   <tr>
-    <td class="w-25"><%= image_tag room.images.first.photo_url, style: Settings.room.image %></td>
+    <td class="w-25"><%= image_tag(room.images.first&.photo_url, style: Settings.room.image) if room.images.first&.photo_url.present? %></td>
     <td><%= room.name %></td>
     <td><%= room.types %></td>
     <td><%= room.description %></td>
