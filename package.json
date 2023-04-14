@@ -1,6 +1,9 @@
 {
   "name": "intern-ruby-2022-hotel-management",
   "private": true,
+  "engines": {
+    "node": "16.19.1"
+  },
   "dependencies": {
     "@nathanvda/cocoon": "^1.2.14",
     "@popperjs/core": "^2.11.6",

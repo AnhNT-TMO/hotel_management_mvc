@@ -17,7 +17,7 @@ home:
   preview_page_link: "https://startbootstrap.com/theme/grayscale/"
   contact_form_link: "https://startbootstrap.com/solution/contact-forms"
 room:
-  room_per_page: 1
+  room_per_page: 3
   rating_max: 5
   image: "width:80%"
   usd: 23000
